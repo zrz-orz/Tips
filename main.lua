@@ -1,5 +1,30 @@
 #!/bin/lua
 
+function random(n, m)
+    math.randomseed(os.clock()*math.random(1000000,90000000)+math.random(1000000,90000000))
+    return math.random(n, m)
+end
+
+function randomNumber(len)
+    local rt = ""
+    for i=1,len,1 do
+        if i == 1 then
+            rt = rt..random(1,9)
+        else
+            rt = rt..random(0,9)
+        end
+    end
+    return rt
+end
+
+function randomLetter(len)
+    local rt = ""
+    for i = 1, len, 1 do
+        rt = rt..string.char(random(97,122))
+    end
+    return rt
+end
+
 local HOME = os.getenv("HOME");
 local hour = os.date("%H");
 local minute = os.date("%M");
@@ -27,7 +52,8 @@ end
 print(Cost);
 print("Input event:");
 local In = io.read();
-local Script = HOME .. "/.Tips_script/" .. In .. ".bash";
+local Shit = randomLetter(15);
+local Script = HOME .. "/.Tips_script/" .. Shit .. ".bash";
 File = io.open(Script, "w+");
 local content = [[
 #!/bin/bash
